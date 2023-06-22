@@ -24,13 +24,15 @@ public class BulletProjectile : MonoBehaviour
         if (other.GetComponent<BulletTarget>() != null)
         {
             // Hit target
-            Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+            Transform greenEffect = Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
+            Destroy(greenEffect.gameObject, 2f); // Destroy after 2 seconds
         }
         else
         {
             // Hit something else
-            Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+            Transform redEffect = Instantiate(vfxHitRed, transform.position, Quaternion.identity);
+            Destroy(redEffect.gameObject, 2f); // Destroy after 2 seconds
         }
-        Destroy(gameObject);
+        Destroy(gameObject); // Destroy the bullet projectile immediately
     }
 }
